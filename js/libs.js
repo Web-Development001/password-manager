@@ -28,3 +28,8 @@ function clearText(get_input_id){
 function reaload_page(page_name) {
     window.location.href = page_name;
 }
+
+function Is_chars(input1,input2){
+    var invalids = '.<>/\\()=';
+
+}

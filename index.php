@@ -18,7 +18,7 @@
 
     <div class="container" id="container">
         <div class="form-container sign-up">
-            <form>
+            <form method="post" action="">
                 <h1>Create Account</h1>
                 <span>or use your email for registeration</span>
                 <br>

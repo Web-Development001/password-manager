@@ -4,8 +4,8 @@ USE password_manager;
 CREATE TABLE Users(
 	id INT PRIMARY KEY,
     Name VARCHAR(30),
-    Age INT,
-    Email VARCHAR(40)
+    Email VARCHAR(40),
+    Password mediumtext
 );
 
 SELECT * FROM Users;
