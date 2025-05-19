@@ -29,7 +29,12 @@ function reaload_page(page_name) {
     window.location.href = page_name;
 }
 
-function Is_chars(input1,input2){
-    var invalids = '.<>/\\()=';
-
-}
+// function Illegal_entry(username,email,password){
+//     var invalids = '.<>/\\()=';
+//     var uname = document.getElementsByName(username).value;
+//     var umail = document.getElementsByName(password).value;
+//     var upass = document.getElementsByName(email).value;
+//     for(let i = 0;i < invalids.length;i++){
+//         if(invalids.charAt(i) == inva)
+//     }
+// }

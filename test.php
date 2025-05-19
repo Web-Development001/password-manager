@@ -18,4 +18,9 @@ include "API/database.php";
 
 $db = new Database_Configure();
 // echo $db->connection();
-echo $db->create_account('<h1>hedfihdf</h1>','mohamedhathim628@gmail.com','hsiofdhsfd');
+// echo $db->create_account('mohamed','mohamedhathim628@gmail.com','hsiofdhsfd');
+// echo $db->create_account('hathim','mohamedhathim628@gmail.com','hsiofdhsfd');
+echo $db->create_account('hunter','mohamedhathim628@gmail.com','abcd')."\n";
+
+// echo $db->login('hathim','hsiofdhsfd');
+// echo $db->remove_account('hsiofdhsfd');

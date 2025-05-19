@@ -18,24 +18,24 @@
 
     <div class="container" id="container">
         <div class="form-container sign-up">
-            <form method="post" action="">
+            <form method="post" action="API/signup.php">
                 <h1>Create Account</h1>
                 <span>or use your email for registeration</span>
                 <br>
-                <input type="text" placeholder="Name">
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
+                <input type="text" placeholder="Name" name="Name" required>
+                <input type="email" placeholder="Email" name="Email" required>
+                <input type="password" placeholder="Password" name="Password" required>
                 <button class="btn">Sign Up</button>
             </form>
         </div>
         <div class="form-container sign-in">
-            <form>
+            <form method="post" action="">
                 <h1>Sign In</h1>
                 <span>or use your email password</span>
                 <br>
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
-                <a href="#">Forget Your Password?</a>
+                <input type="email" placeholder="Email_log">
+                <input type="password" placeholder="Password_log">
+                <!-- <a href="#">Forget Your Password?</a> -->
                 <button class="btn">Sign In</button>
             </form>
         </div>
