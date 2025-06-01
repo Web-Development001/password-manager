@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/libs.js"></script>
     <title>Password Manager</title>
 </head>
 
@@ -18,14 +19,60 @@
 
     <div class="container" id="container">
         <div class="form-container sign-up">
-            <form method="post" action="API/signup.php">
+            <form method="post">
                 <h1>Create Account</h1>
                 <span>or use your email for registeration</span>
                 <br>
-                <input type="text" placeholder="Name" name="Name" required>
-                <input type="email" placeholder="Email" name="Email" required>
-                <input type="password" placeholder="Password" name="Password" required>
-                <button class="btn">Sign Up</button>
+                <input type="text" placeholder="Name" id="Name" required>
+                <input type="email" placeholder="Email" id="Email" required>
+                <input type="password" placeholder="Password" id="Password" required>
+                <small id="err"></small>
+                <button class="btn" onclick="">Sign Up</button>
+
+                <script>
+                    let invalids = '!&*().\\/<>';
+                    let username = document.getElementById('Name');
+                    let email = document.getElementById('Email');
+                    let password = document.getElementById('Password');                    
+                    const err = '';
+                    let hasInvalid = false;
+
+                    username.addEventListener('input', () => {
+                        const err = document.getElementById('err');
+                        hasInvalid = false;
+                        for(let f of invalids){
+                            if(username.value.includes(f)) {
+                                hasInvalid = true;
+                                break;
+                            }
+                            if(username.value == ''){
+                                hasInvalid = null;
+                            }
+                        }
+                        if(hasInvalid){
+                            err.style.color = 'red';
+                            err.textContent = 'Do not allowed : !&*().\\/<>';
+                        } else if(hasInvalid == null){
+                            err.textContent = '';
+                        } else {
+                            err.style.color = 'green';
+                            err.textContent = 'Verified';
+                        }
+                    });
+
+                    password.addEventListener('input', () => {
+                        const err = document.getElementById('err');
+
+                        if(password.value.length > 10){
+                            err.style.color = 'green';
+                            err.textContent = 'Verified';
+                        } else {
+                            err.style.color = 'red';
+                            err.textContent = 'Password must above 10 character';
+                        }
+                    })
+
+                </script>
             </form>
         </div>
         <div class="form-container sign-in">
@@ -33,8 +80,8 @@
                 <h1>Sign In</h1>
                 <span>or use your email password</span>
                 <br>
-                <input type="email" placeholder="Email_log">
-                <input type="password" placeholder="Password_log">
+                <input type="email" placeholder="Email" name="Email_log">
+                <input type="password" placeholder="Password" name="Password_log">
                 <!-- <a href="#">Forget Your Password?</a> -->
                 <button class="btn">Sign In</button>
             </form>
