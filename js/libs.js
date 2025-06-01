@@ -6,3 +6,29 @@ function getapi_key(){
     return getAPI_key;
 }
 
+function signup(username,email,password){
+    fetch('http://localhost:3000/API/signup.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            Name: username,
+            Email: email,
+            Password: password
+        })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json(); // 👈 parse as JSON
+    })
+    .then(data => {
+        console.log('Server response:', data); // use returned JSON
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+    
+}

@@ -27,51 +27,63 @@
                 <input type="email" placeholder="Email" id="Email" required>
                 <input type="password" placeholder="Password" id="Password" required>
                 <small id="err"></small>
-                <button class="btn" onclick="">Sign Up</button>
+                <button class="btn" onclick="_signup()">Sign Up</button>
 
                 <script>
                     let invalids = '!&*().\\/<>';
                     let username = document.getElementById('Name');
                     let email = document.getElementById('Email');
                     let password = document.getElementById('Password');                    
-                    const err = '';
-                    let hasInvalid = false;
+                    let valid_username = true;
+                    let valid_password = false;
 
                     username.addEventListener('input', () => {
                         const err = document.getElementById('err');
-                        hasInvalid = false;
                         for(let f of invalids){
                             if(username.value.includes(f)) {
-                                hasInvalid = true;
+                                valid_username = false;
                                 break;
                             }
                             if(username.value == ''){
-                                hasInvalid = null;
+                                valid_username = null;
                             }
                         }
-                        if(hasInvalid){
+                        if(valid_username === false){
                             err.style.color = 'red';
-                            err.textContent = 'Do not allowed : !&*().\\/<>';
-                        } else if(hasInvalid == null){
+                            err.textContent = 'Don\'t use !,&,*,(,),.,\\,/,<,>';
+                        } 
+                        if(valid_username === false || valid_username === null){
                             err.textContent = '';
-                        } else {
-                            err.style.color = 'green';
-                            err.textContent = 'Verified';
                         }
+                        else valid_username = true;
+
                     });
 
                     password.addEventListener('input', () => {
                         const err = document.getElementById('err');
 
                         if(password.value.length > 10){
+                            valid_password = true;
                             err.style.color = 'green';
-                            err.textContent = 'Verified';
+                            err.textContent = 'Information verified';
                         } else {
+                            valid_password = false;
                             err.style.color = 'red';
-                            err.textContent = 'Password must above 10 character';
+                            err.textContent = 'Password must have 10 character';
                         }
-                    })
+                    });
 
+                    function _signup(){
+                        if(valid_username === true && valid_password === true){
+                            let get_username = username.value;
+                            let get_email = email.value;
+                            let get_password = password.value;
+                            signup(get_username,get_email,get_password);
+                            console.log(1);
+                        } else {
+                            console.log(2);
+                        }
+                    }
                 </script>
             </form>
         </div>
