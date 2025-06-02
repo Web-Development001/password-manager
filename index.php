@@ -6,7 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
+<<<<<<< HEAD
     <script src="js/libs.js"></script>
+=======
+>>>>>>> 6242d5f (this is big push to change all)
     <title>Password Manager</title>
 </head>
 
@@ -19,6 +22,7 @@
 
     <div class="container" id="container">
         <div class="form-container sign-up">
+<<<<<<< HEAD
             <form method="post">
                 <h1>Create Account</h1>
                 <span>or use your email for registeration</span>
@@ -85,15 +89,31 @@
                         }
                     }
                 </script>
+=======
+            <form>
+                <h1>Create Account</h1>
+                <span>or use your email for registeration</span>
+                <br><br>
+                <input type="text" placeholder="Name" name="user_sign">
+                <input type="email" placeholder="Email" name="email_sign">
+                <input type="password" placeholder="Password" name="password_email">
+                <button class="btn">Sign Up</button>
+>>>>>>> 6242d5f (this is big push to change all)
             </form>
         </div>
         <div class="form-container sign-in">
             <form method="post" action="">
                 <h1>Sign In</h1>
                 <span>or use your email password</span>
+<<<<<<< HEAD
                 <br>
                 <input type="email" placeholder="Email" name="Email_log">
                 <input type="password" placeholder="Password" name="Password_log">
+=======
+                <br><br>
+                <input type="email" placeholder="Email" name="user_login">
+                <input type="password" placeholder="Password" name="password_login">
+>>>>>>> 6242d5f (this is big push to change all)
                 <!-- <a href="#">Forget Your Password?</a> -->
                 <button class="btn">Sign In</button>
             </form>
