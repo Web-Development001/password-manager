@@ -2,122 +2,46 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-<<<<<<< HEAD
-    <script src="js/libs.js"></script>
-=======
->>>>>>> 6242d5f (this is big push to change all)
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <title>Password Manager</title>
 </head>
 
 <body>
     <video autoplay muted loop id="bg-video">
-        <source src="bg-vedio.mp4" type="video/mp4">
+        <source src="bg-vedio.mp4" type="video/mp4" />
         Your browser does not support HTML5 video.
     </video>
 
-
     <div class="container" id="container">
         <div class="form-container sign-up">
-<<<<<<< HEAD
             <form method="post">
                 <h1>Create Account</h1>
-                <span>or use your email for registeration</span>
-                <br>
-                <input type="text" placeholder="Name" id="Name" required>
-                <input type="email" placeholder="Email" id="Email" required>
-                <input type="password" placeholder="Password" id="Password" required>
+                <span>or use your email for registration</span>
+                <br />
+                <input type="text" placeholder="Name" id="Name" required />
+                <input type="email" placeholder="Email" id="Email" required />
+                <input type="password" placeholder="Password" id="Password" required />
                 <small id="err"></small>
-                <button class="btn" onclick="_signup()">Sign Up</button>
-
-                <script>
-                    let invalids = '!&*().\\/<>';
-                    let username = document.getElementById('Name');
-                    let email = document.getElementById('Email');
-                    let password = document.getElementById('Password');                    
-                    let valid_username = true;
-                    let valid_password = false;
-
-                    username.addEventListener('input', () => {
-                        const err = document.getElementById('err');
-                        for(let f of invalids){
-                            if(username.value.includes(f)) {
-                                valid_username = false;
-                                break;
-                            }
-                            if(username.value == ''){
-                                valid_username = null;
-                            }
-                        }
-                        if(valid_username === false){
-                            err.style.color = 'red';
-                            err.textContent = 'Don\'t use !,&,*,(,),.,\\,/,<,>';
-                        } 
-                        if(valid_username === false || valid_username === null){
-                            err.textContent = '';
-                        }
-                        else valid_username = true;
-
-                    });
-
-                    password.addEventListener('input', () => {
-                        const err = document.getElementById('err');
-
-                        if(password.value.length > 10){
-                            valid_password = true;
-                            err.style.color = 'green';
-                            err.textContent = 'Information verified';
-                        } else {
-                            valid_password = false;
-                            err.style.color = 'red';
-                            err.textContent = 'Password must have 10 character';
-                        }
-                    });
-
-                    function _signup(){
-                        if(valid_username === true && valid_password === true){
-                            let get_username = username.value;
-                            let get_email = email.value;
-                            let get_password = password.value;
-                            signup(get_username,get_email,get_password);
-                            console.log(1);
-                        } else {
-                            console.log(2);
-                        }
-                    }
-                </script>
-=======
-            <form>
-                <h1>Create Account</h1>
-                <span>or use your email for registeration</span>
-                <br><br>
-                <input type="text" placeholder="Name" name="user_sign">
-                <input type="email" placeholder="Email" name="email_sign">
-                <input type="password" placeholder="Password" name="password_email">
-                <button class="btn">Sign Up</button>
->>>>>>> 6242d5f (this is big push to change all)
+                <script type="module" src="js/utils.js"></script>
+                <button type="button" id="signup-btn">Sign Up</button>
             </form>
         </div>
+
         <div class="form-container sign-in">
             <form method="post" action="">
                 <h1>Sign In</h1>
                 <span>or use your email password</span>
-<<<<<<< HEAD
-                <br>
-                <input type="email" placeholder="Email" name="Email_log">
-                <input type="password" placeholder="Password" name="Password_log">
-=======
-                <br><br>
-                <input type="email" placeholder="Email" name="user_login">
-                <input type="password" placeholder="Password" name="password_login">
->>>>>>> 6242d5f (this is big push to change all)
+                <br />
+                <input type="email" placeholder="Email" name="user_login" />
+                <input type="password" placeholder="Password" name="password_login" />
                 <!-- <a href="#">Forget Your Password?</a> -->
-                <button class="btn">Sign In</button>
+                <button class="btn" type="submit">Sign In</button>
             </form>
         </div>
+
         <div class="toggle-container">
             <div class="toggle">
                 <div class="toggle-panel toggle-left">
