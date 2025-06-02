@@ -25,9 +25,9 @@
                 <input type="email" placeholder="Email" id="Email" required />
                 <input type="password" placeholder="Password" id="Password" required />
                 <small id="err"></small>
-                <script type="module" src="js/utils.js"></script>
                 <button type="button" id="signup-btn">Sign Up</button>
             </form>
+            <script type="module" src="js/utils.js"></script>
         </div>
 
         <div class="form-container sign-in">

@@ -8,11 +8,14 @@ export function validate_username(){
     }
 }
 
-export function validate_email(){
-    let email = document.getElementById('Email').value
-    let api_key = get_api_key()
-    // fetch('https://api.zerobounce.net/v2/validate?api_key='+api_key+'&email='+email)
-    // .then(response => response.json())
-    // .then(result => console.log(result));
-    console.log(api_key)
+export function validate_email(key){
+    let email = document.getElementById('Email').value;
+    return fetch('https://api.zerobounce.net/v2/validate?api_key='+key+'&email='+email)
+        .then(response => response.json())
+        .then(result => {
+            if(result.status == 'valid') return true;
+            else return false;
+        }).catch(err => {
+            return err.message;
+        });
 }
