@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <script src="js/libs.js"></script>
     <title>Password Manager</title>
 </head>
 
@@ -21,13 +22,12 @@
                 <h1>Create Account</h1>
                 <span>or use your email for registration</span>
                 <br />
-                <input type="text" placeholder="Name" id="Name" required />
-                <input type="email" placeholder="Email" id="Email" required />
-                <input type="password" placeholder="Password" id="Password" required />
+                <input type="text" placeholder="Name" id="Name" required>
+                <input type="email" placeholder="Email" id="Email" required>
+                <input type="password" placeholder="Password" id="Password" required>
                 <small id="err"></small>
-                <button type="button" id="signup-btn">Sign Up</button>
+                <button type="button" onclick="signup()" id="signup_btn">Sign Up</button>
             </form>
-            <script type="module" src="js/utils.js"></script>
         </div>
 
         <div class="form-container sign-in">
