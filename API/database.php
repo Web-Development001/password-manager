@@ -69,7 +69,7 @@ class Database_Configure{
         }
     }
 
-    private function search_account($username=null){
+    function search_account($username=null){
         $query = "SELECT * FROM `$this->user_table`";
         $proc = $this->con->query($query);
         
@@ -80,14 +80,6 @@ class Database_Configure{
             }
         }
         return false;
-    }
-
-    function login($username,$password){
-        $check_user = $this->search_account($username);
-        if($check_user and $check_user['Email']){
-            if($check_user['Name'] == $username and $check_user['Password'] == $password) return 'LOGIN SUCCESS';
-            else return 'LOGIN FAILED';
-        } else return 'INVALID DATA FORMAT FOUND';
     }
 
     function remove_account($password){

@@ -14,13 +14,29 @@
 
 // echo random_int(10000000,99999999);
 
-include "API/database.php";
+// include "API/database.php";
 
-$db = new Database_Configure();
-// echo $db->connection();
-// echo $db->create_account('mohamed','mohamedhathim628@gmail.com','hsiofdhsfd');
-// echo $db->create_account('hathim','mohamedhathim628@gmail.com','hsiofdhsfd');
-echo $db->create_account('hunter','mohamedhathim628@gmail.com','abcd')."\n";
+// $db = new Database_Configure();
+// // echo $db->connection();
+// // echo $db->create_account('mohamed','mohamedhathim628@gmail.com','hsiofdhsfd');
+// // echo $db->create_account('hathim','mohamedhathim628@gmail.com','hsiofdhsfd');
+// // echo $db->create_account('hunter','mohamedhathim628@gmail.com','abcd')."\n";
 
-// echo $db->login('hathim','hsiofdhsfd');
-// echo $db->remove_account('hsiofdhsfd');
+// // echo $db->login('hathim','hsiofdhsfd');
+// // echo $db->remove_account('hsiofdhsfd');
+
+// $a = $db->search_account('hello');
+
+// foreach($a as $d){
+//     echo $d."\n";
+// }
+
+session_start();
+
+if (isset($_SESSION['visit_count'])) {
+    $_SESSION['visit_count']++;
+} else {
+    $_SESSION['visit_count'] = 1;
+}
+
+echo "You visited this page " . $_SESSION['visit_count'] . " times during this session.";

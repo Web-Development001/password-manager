@@ -1,8 +1,12 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <link rel="stylesheet" href="css/style.css" />
@@ -20,25 +24,26 @@
         <div class="form-container sign-up">
             <form method="post">
                 <h1>Create Account</h1>
-                <span>or use your email for registration</span>
+                <!-- <span>or use your email for registration</span> -->
                 <br />
-                <input type="text" placeholder="Name" id="Name" required>
+                <input type="text" placeholder="Username" id="Name" required>
                 <input type="email" placeholder="Email" id="Email" required>
                 <input type="password" placeholder="Password" id="Password" required>
-                <small id="err"></small>
+                <small id="err" style="padding: 1cap;"></small>
                 <button type="button" onclick="signup()" id="signup_btn">Sign Up</button>
             </form>
         </div>
 
         <div class="form-container sign-in">
-            <form method="post" action="">
+            <form method="post">
                 <h1>Sign In</h1>
-                <span>or use your email password</span>
+                <!-- <span>or use your email password</span> -->
                 <br />
-                <input type="email" placeholder="Email" name="user_login" />
-                <input type="password" placeholder="Password" name="password_login" />
+                <input type="text" placeholder="Username" name="Username_login" id="Username_login">
+                <input type="password" placeholder="Password" name="Password_login" id="Password_login">
+                <small id="_err" style="padding: 1cap;"></small>
                 <!-- <a href="#">Forget Your Password?</a> -->
-                <button class="btn" type="submit">Sign In</button>
+                <button class="btn" type="button" onclick="login()">Log in</button>
             </form>
         </div>
 
