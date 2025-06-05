@@ -12,7 +12,7 @@ function validate_username(){
 
 function validate_password(){
     let pass = document.getElementById('Password');
-    if(pass.value.length >= 10) return pass.value;
+    if(pass.value.length >= 10) return String(pass.value);
     if(pass.value === '') return false;
     return null;
 }
@@ -59,7 +59,7 @@ function signup() {
             body:formData
         }).then(response => response.json())
         .then(result => {
-            if(result.Status === 200){
+            if(result.status === 200){
                 document.getElementById('err').style.color = 'green';
                 document.getElementById('err').textContent = 'Signup successfull';
                 setTimeout(() => window.location.reload(),2000);

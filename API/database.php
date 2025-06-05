@@ -1,8 +1,6 @@
 <?php
 
-use function PHPSTORM_META\type;
-
-include "getconfig.php";
+include ('../libs/externals.php');
 
 class Database_Configure{
     private $host;
@@ -65,6 +63,32 @@ class Database_Configure{
                 }
             }
         } else {
+            return false;
+        }
+    }
+
+    function set_user_informations($username){
+        $get_real_ip = file_get_contents("https://api.ipify.org");
+        $get_user_agent = $_SERVER['HTTP_USER_AGENT'];
+        $getip_infos = get_ip_information($get_real_ip);
+        $getcountry = $getip_infos['Country'];
+        $getcity = $getip_infos['City'];
+        $getisp = $getip_infos['ISP'];
+        $getisp_organisation = $getip_infos['ISP_org'];
+        $get_latitude = $getip_infos['lat'];
+        $getlongitude = $getip_infos['lon'];
+        $is_mobile = $getip_infos['Is_mobile'];
+        $is_proxy = $getip_infos['Is_proxy'];
+        $date = $getip_infos['Date'];
+        $time = $getip_infos['Time'];
+
+        $query = "INSERT INTO `$this->user_info` (`Name`,`Ip_addr`,`User_agant`,`Country`,`City`,`ISP`,`ISP_organization`,`Latitude`,`Longitude`,`Mobile`,`Proxy`,`Date`,`Time`)
+        VALUES ('$username','$get_real_ip','$get_user_agent','$getcountry','$getcity','$getisp','$getisp_organisation','$get_latitude','$getlongitude','$is_mobile','$is_proxy','$date','$time')";
+
+        try {
+            $this->con->query($query);
+            return true;
+        } catch(Exception $e){
             return false;
         }
     }
