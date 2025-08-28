@@ -2,15 +2,9 @@
     "database": {
         "db_server": "localhost",
         "db_user": "root",
-        "db_pass": "Mohamed@123",
+        "db_pass": "mypass123",
         "db_name": "password_manager",
         "user":"Users",
         "user_sec_info":"User_Sec_Info"
-    },
-    "email": {
-        "sender_mail": "passmanager852@gmail.com",
-        "mail_password": "cvvm ixvw hzdx ciei"
-    },
-    "API_KEY": "28e391d0362540d78ac02b78a42f1c02",
-    "Description":"The above is the API key of zerobounce.net website"
+    }
 }

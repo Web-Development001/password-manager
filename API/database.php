@@ -29,42 +29,18 @@ class Database_Configure{
         else return true;
     }
 
-    function create_account($username,$email,$password){
-        $randome_num = random_int(10000000,99999999);
-        $for_email = str_replace('.','',$this->invalid_chars);
-        $check_username = str_contains($username,$this->invalid_chars);
-        $check_email = str_contains($email,$for_email);
-        $check_password = str_contains($password,$this->invalid_chars);
-
+    function register($username,$email,$password,$rn){
         if($username and $email and $password){
-            if($check_username and $check_password and $check_email){
-                $valid_username = str_replace($this->invalid_chars,'',$username);
-                $valid_email = str_replace($this->invalid_chars,'',$email);
-                $valid_password = str_replace($this->invalid_chars,'',$password);
+            $query = "INSERT INTO `$this->user_table` (`id`,`Name`,`Email`,`Password`)
+            VALUES ('$rn','$username','$email','$password')";
 
-                $query = "INSERT INTO `$this->user_table` (`id`,`Name`,`Email`,`Password`)
-                VALUES ('$randome_num','$valid_username','$valid_email','$valid_password')";
-
-                try{
-                    $this->con->query($query);
-                    return true;
-                } catch(Exception){
-                    return false;
-                }
-            } else {
-                $query = "INSERT INTO `$this->user_table` (`id`,`Name`,`Email`,`Password`)
-                VALUES ('$randome_num','$username','$email','$password')";
-
-                try{
-                    $this->con->query($query);
-                    return true;
-                } catch(Exception){
-                    return false;
-                }
+            try{
+                $this->con->query($query);
+                return true;
+            } catch(Exception){
+                return false;
             }
-        } else {
-            return false;
-        }
+        } else return false;
     }
 
     function set_user_informations($username){
