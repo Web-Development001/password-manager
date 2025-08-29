@@ -523,9 +523,9 @@ session_start();
                 <h1>Welcome Back</h1>
                 <p>Sign in to access your password vault</p>
                 <form method="post" action="API/createacc.php">
-                    <input type="text" placeholder="Username" name="user" id="Username_login" required>
-                    <input type="password" placeholder="Password" name="pass" id="Password_login" required>
-                    <input type="email" placeholder="Email" name="mail" id="Email_login" required>
+                    <input type="text" placeholder="Username" name="user" id="user-s" required>
+                    <input type="password" placeholder="Password" name="pass" id="pass-s" required>
+                    <input type="email" placeholder="Email" name="mail" id="email-s" required>
                     <small id="_err" style="color: var(--danger); display: block; text-align: center; margin-bottom: 1rem;"></small>
                     <button type="button" onclick="login()">Log in</button>
                 </form>
@@ -614,29 +614,28 @@ session_start();
         
         // Your existing functions
         function signup() {
-            // Your signup logic
-            console.log('Signup function called');
+            fetch('http://localhost:3000/API/createacc.php',{
+                method:'post',
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                body:JSON.stringify({
+                    'user':document.getElementById('user-s').value,
+                    'pass':document.getElementById('pass-s').value,
+                    'mail':document.getElementById('email-s').value,
+                })
+            })
+            .then(response => response.text())
+            .then(value => {
+                alert("Run success and show",value)
+            })
+            .catch(err => {
+                alert(err)
+            })
         }
         
         function login() {
-            fetch('http://localhost:3000/API/createacc.php',{
-                method:'POST',
-                headers:{
-                    "Content-Type": "application/json"
-                },
-                body:JSON.stringify({
-                    'user':document.getElementById('Username_login').value,
-                    'pass':document.getElementById('Password_login').value,
-                    'mail':document.getElementById('Email_login').value,
-                })
-            })
-            .then(response => response.json())
-            .then(value => {
-                window.location.href = 'www.google.com'
-            })
-            .catch(err => {
-                alert('Error when  signup')
-            })
+            
         }
     </script>
 </body>

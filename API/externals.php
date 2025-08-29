@@ -5,7 +5,7 @@ use PHPMailer\PHPMailer\Exception;
 
 require '../vendor/autoload.php';
 
-function getconfig($path="/media/mohamed/54B633F1B633D26A/Web development/password-manager/db.json",$key=null,$key2=null){
+function getconfig($path="/var/www/html/password-manager/db.json",$key=null,$key2=null){
     if(file_exists($path)){
         if($key and $key2){
             $getcontent = file_get_contents($path);
@@ -184,7 +184,8 @@ function get_ip_information($ip){
     $mobile            = $is_mobile ? 'mobile':'pc or lap'; 
     $proxy             = $info->$ip->proxy;
     $date              = date("Y-m-d");
-    $time              = date("H:i:s");
+    date_default_timezone_set("Asia/Kolkata"); 
+    $time              = date("h:i:s A");
     return [
         'Valid' => $info->status,
         'IP' => $ip_addr,
