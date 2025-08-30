@@ -44,7 +44,7 @@ class Database_Configure{
     }
 
     function set_user_informations($username){
-        $get_real_ip = file_get_contents("https://api.ipify.org/");
+        $get_real_ip = get_ip();
         $get_user_agent = $_SERVER['HTTP_USER_AGENT'];
         $getip_infos = get_ip_information($get_real_ip);
         $getcountry = $getip_infos['Country'];
@@ -58,8 +58,8 @@ class Database_Configure{
         $date = $getip_infos['Date'];
         $time = $getip_infos['Time'];
 
-        $query = "INSERT INTO `$this->user_info` (`Name`,`Ip_addr`,`User_agent`,`Country`,`City`,`ISP`,`ISP_organization`,`Latitude`,`Longitude`,`Mobile`,`Proxy`,`Date`,`Time`)
-        VALUES ('$username','$get_real_ip','$get_user_agent','$getcountry','$getcity','$getisp','$getisp_organisation','$get_latitude','$getlongitude','$is_mobile','$is_proxy','$date','$time')";
+        $query = "INSERT INTO `$this->user_info` (`Name`,`Ip_addr`,`User_agent`,`Country`,`City`,`ISP`,`ISP_organization`,`Latitude`,`Longitude`,`Mobile`,`Date`,`Time`)
+        VALUES ('$username','$get_real_ip','$get_user_agent','$getcountry','$getcity','$getisp','$getisp_organisation','$get_latitude','$getlongitude','$is_mobile','$date','$time')";
 
         try {
             $this->con->query($query);
@@ -69,12 +69,12 @@ class Database_Configure{
         }
     }
 
-    function search_account($username=null){
+    function search_account($match=null,$param=null){
         $query = "SELECT * FROM `$this->user_table`";
         $proc = $this->con->query($query);
         
         while($get_names = $proc->fetch_assoc()){
-            if($get_names['Name'] == $username){
+            if($get_names[$param] == $match){
                 return $get_names;
                 break;
             }

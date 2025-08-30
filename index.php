@@ -522,10 +522,9 @@ session_start();
             <div class="form-container">
                 <h1>Welcome Back</h1>
                 <p>Sign in to access your password vault</p>
-                <form method="post" action="API/createacc.php">
-                    <input type="text" placeholder="Username" name="user" id="user-s" required>
-                    <input type="password" placeholder="Password" name="pass" id="pass-s" required>
-                    <input type="email" placeholder="Email" name="mail" id="email-s" required>
+                <form method="get">
+                    <input type="text" placeholder="Username" id="user-l" required>
+                    <input type="password" placeholder="Password" id="pass-l" required>
                     <small id="_err" style="color: var(--danger); display: block; text-align: center; margin-bottom: 1rem;"></small>
                     <button type="button" onclick="login()">Log in</button>
                 </form>
@@ -546,11 +545,11 @@ session_start();
                 <h1>Create Account</h1>
                 <p>Join thousands of users who trust SecureVault</p>
                 <form method="post">
-                    <input type="text" placeholder="Username" id="Name" required>
-                    <input type="email" placeholder="Email" id="Email" required>
-                    <input type="password" placeholder="Password" id="Password" required>
+                    <input type="text" placeholder="Username" id="user-s" required>
+                    <input type="email" placeholder="Email" id="email-s" required>
+                    <input type="password" placeholder="Password" id="pass-s" required>
                     <small id="err" style="color: var(--danger); display: block; text-align: center; margin-bottom: 1rem;"></small>
-                    <button type="button" onclick="signup()" id="signup_btn">Sign Up</button>
+                    <button type="button" onclick="signup()">Sign Up</button>
                 </form>
                 <div class="form-footer">
                     <p>Already have an account? <a id="switch-to-login">Log in</a></p>
@@ -612,30 +611,48 @@ session_start();
             }
         });
         
-        // Your existing functions
         function signup() {
-            fetch('http://localhost:3000/API/createacc.php',{
-                method:'post',
-                headers:{
-                    "Content-Type":"application/json"
-                },
-                body:JSON.stringify({
-                    'user':document.getElementById('user-s').value,
-                    'pass':document.getElementById('pass-s').value,
-                    'mail':document.getElementById('email-s').value,
+            if(String(document.getElementById('email-s').value).includes('@')){
+                let formData = new FormData();
+                formData.append('user', document.getElementById('user-s').value);
+                formData.append('pass', document.getElementById('pass-s').value);
+                formData.append('mail', document.getElementById('email-s').value);
+                fetch('http://192.168.139.86/API/signup.php',{
+                    method:'POST',
+                    body:formData
                 })
-            })
-            .then(response => response.text())
-            .then(value => {
-                alert("Run success and show",value)
-            })
-            .catch(err => {
-                alert(err)
-            })
+                .then(response => response.json())
+                .then(value => {
+                    if(value['status'] === 200) document.getElementById('err').textContent = 'success'
+                    window.location.reload()
+                })
+                .catch(err => {
+                    alert(err)
+                })
+            } else document.getElementById('err').textContent = 'invalid email'
         }
         
         function login() {
-            
+            let login_data = new FormData()
+            login_data.append('user',document.getElementById('user-l').value)
+            login_data.append('pass',document.getElementById('pass-l').value)
+
+            fetch('http://192.168.139.86/API/login.php',{
+                method:'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body:login_data
+            })
+            .then(response => response.json())
+            .then(value => {
+                console.log(value)
+                if(value['status'] === 200) document.getElementById('_err').textContent = 'login success!'
+                window.location.href = 'main.html'
+            })
+            .catch(err => {
+                document.getElementById('_err').textContent = err
+            })
         }
     </script>
 </body>

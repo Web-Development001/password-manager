@@ -1,18 +1,23 @@
 <?php
 
 include 'database.php';
-include 'externals.php';
+include_once 'externals.php';
 
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Headers: Content-Type");
+// header('Access-Control-Allow-Origin:*');
+
 $db = new Database_Configure();
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $rn = random_int(10000000,99999999);
-    $username = $_POST['user'];
-    $password = $_POST['pass'];
-    $email = $_POST['mail'];
+    $username = htmlspecialchars($_POST['user']);
+    $password = htmlspecialchars($_POST['pass']);
+    $email = htmlspecialchars($_POST['mail']);
 
-    if($db->register(htmlspecialchars($username),htmlspecialchars($email),htmlspecialchars($password),$rn)) echo response(200);
-    else echo response(500);
+    if(strpos($email,'@')){
+        $api_calls = [$db->register($username,$email,$password,$rn),$db->set_user_informations($username)];
+
+        if($api_calls[0] and $api_calls[1]) echo response(200);
+        else echo response(500);
+    } else echo response(406);
 } else echo response(502);
+

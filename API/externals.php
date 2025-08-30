@@ -166,6 +166,15 @@ function response($status_code=0){
     }
 }
 
+
+function get_ip(){
+    $ch = curl_init("https://v4.ident.me/");
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $response = curl_exec($ch);
+    curl_close($ch);
+    return $response;
+}
+
 function get_ip_information($ip){
     // $get_local_ip = $_SERVER['REMOTE_ADDR'];
     $api = 'https://proxycheck.io/v2/'.$ip.'?vpn=1&asn=1';
